@@ -13,8 +13,10 @@ $viewsDir = $projectDir . '/src/Views';
 $config = [
     'app' => [
         'classes'      => [
+            'Common\\Authentication\\IAuthentication' => $authDir . '/IAuthentication.php',
             'Common\\Authentication\\FileBased' => $authDir . '/FileBased.php',
             'Common\\Authentication\\InMemory'  => $authDir . '/InMemory.php',
+            'Common\\Authentication\\MySQL'     => $authDir . '/MySQL.php',
             'Common\\Http\\IRequest'            => $httpDir . '/IRequest.php',
             'Common\\Http\\SimpleRequest'       => $httpDir . '/SimpleRequest.php',
             'Common\\Routers\\IRouter'          => $routerDir . '/IRouter.php',
@@ -22,8 +24,10 @@ $config = [
             'Controllers\\AuthController'       => $controllersDir . '/AuthController.php',
             'Controllers\\Controller'           => $controllersDir . '/Controller.php',
             'Controllers\\MainController'       => $controllersDir . '/MainController.php',
+            'Controllers\\HomeController'       => $controllersDir . '/HomeController.php',
             'Views\\LoginForm'                  => $viewsDir . '/LoginForm.php',
             'Views\\View'                       => $viewsDir . '/View.php',
+            'Views\\Home'                       => $viewsDir . '/Home.php',
         ],
         'dir'          => [
             'authentication' => $authDir,
@@ -37,7 +41,8 @@ $config = [
         ],
         'uri-mappings' => [
             '/auth' => 'Controllers\\AuthController',
-            '/'     => 'Controllers\\MainController'
+            '/'     => 'Controllers\\MainController',
+            '/home' => 'Controllers\\HomeController'
         ]
     ]
 ];

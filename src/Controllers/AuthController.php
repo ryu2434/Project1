@@ -12,12 +12,19 @@
 
 namespace Controllers;
 
+use Common\Authentication\FileBased;
+use Common\Authentication\InMemory;
+use Common\Authentication\MySQL;
+use Views\Home;
 
 /**
  * Class AuthController
  */
 class AuthController extends Controller
 {
+
+    protected $auth;
+
     /**
      * Function execute
      *
@@ -26,9 +33,35 @@ class AuthController extends Controller
     public function action()
     {
         $postData = $this->request->getPost();
+        
+        $authType = $postData->authType;
+        $this->instantiateAuth($authType);
 
-        echo 'Authenticate the above two different ways' . var_dump($postData);
+        if($this->auth->authenticate($postData->username, $postData->password)) {
+            $view = new Home($postData);
+            $view->show();
+        }
 
-        // example code: $auth = new Authentication($postData['username'], $postData['password']);
+        else {
+            //$view = new LoginForm();
+            //$view->show();
+            echo "Authentication failed";
+        }
+    }
+
+    private function instantiateAuth ($param_authType) {
+        //Route based on Authtype
+        if($param_authType === "InMemory") {
+            $this->auth = new InMemory ();
+        }
+
+        else if($param_authType === "FileBased") {
+            $this->auth = new FileBased ();
+        }
+
+        else if($param_authType === "MySQL") {
+            $this->auth = new MySQL ();
+        }
+
     }
 }
