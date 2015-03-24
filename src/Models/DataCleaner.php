@@ -1,6 +1,8 @@
 <?php
 
-//class DataCleaner {
+namespace Models;
+
+class DataCleaner {
 	
 
 	/** Function is used to parse the given data and certify it as clean 
@@ -23,4 +25,4 @@
 	}
 	
 
-//}
+}

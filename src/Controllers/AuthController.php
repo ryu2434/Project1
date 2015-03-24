@@ -16,6 +16,7 @@ use Common\Authentication\FileBased;
 use Common\Authentication\InMemory;
 use Common\Authentication\MySQL;
 use Views\Home;
+use Models\DataCleaner;
 
 /**
  * Class AuthController
@@ -33,6 +34,12 @@ class AuthController extends Controller
     public function action()
     {
         $postData = $this->request->getPost();
+
+        $dataCleaner = new DataCleaner();
+
+        foreach($postData as $value) {
+            $dataCleaner->clean($value);
+        }
         
         $authType = $postData->authType;
         $this->instantiateAuth($authType);

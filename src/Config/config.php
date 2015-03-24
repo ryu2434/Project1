@@ -9,6 +9,7 @@ $httpDir = $projectDir . '/src/Common/Http';
 $routerDir = $projectDir . '/src/Common/Routers';
 $srcDir = $projectDir . '/src';
 $viewsDir = $projectDir . '/src/Views';
+$modelsDir = $projectDir . '/src/Models';
 
 $config = [
     'app' => [
@@ -21,6 +22,7 @@ $config = [
             'Common\\Http\\SimpleRequest'       => $httpDir . '/SimpleRequest.php',
             'Common\\Routers\\IRouter'          => $routerDir . '/IRouter.php',
             'Common\\Routers\\SimpleRouter'     => $routerDir . '/SimpleRouter.php',
+            'Models\\DataCleaner'               => $modelsDir . '/DataCleaner.php',
             'Controllers\\AuthController'       => $controllersDir . '/AuthController.php',
             'Controllers\\Controller'           => $controllersDir . '/Controller.php',
             'Controllers\\MainController'       => $controllersDir . '/MainController.php',
@@ -37,7 +39,8 @@ $config = [
             'http'           => $httpDir,
             'routers'        => $routerDir,
             'src'            => $srcDir,
-            'views'          => $viewsDir
+            'views'          => $viewsDir,
+            'models'         => $modelsDir
         ],
         'uri-mappings' => [
             '/auth' => 'Controllers\\AuthController',
